@@ -22,6 +22,7 @@ Install meteor:
 Install nodejs 0.8.23:
 
      wget http://nodejs.org/dist/v0.8.23/node-v0.8.23.tar.gz
+     tar -zxvf node-v0.8.23.tar.gz
      cd node-v0.8.23/
      ./configure
      make -j4
