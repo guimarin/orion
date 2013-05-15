@@ -1,0 +1,180 @@
+<template name="cards">
+
+<div class="container">
+
+  <a href="#addCardModal" id="addCardButton" data-toggle="modal" class="btn btn-large pull-right">Create Card</a>
+
+  <h2>{{projectName}}</h2>
+
+  {{> searchUI}}
+
+  {{> sortingUI}}
+
+
+  {{#if cards}}
+       {{#each cards}}
+           {{> card}}
+       {{/each}}
+  {{else}}
+    <h2>No Cards Found</h2>
+  {{/if}}
+
+  <p><a href="#" id="backToList"><i class="icon-arrow-left"></i> Back to List</a></p>
+  
+</div>
+
+</template>
+
+<template name="searchUI">
+
+    <div class="form-wrapper cf">
+        <input id="searchBox" type="text" placeholder="Filter pattern... (blank query resets list)" required>
+        <button type="submit" id="searchBoxButton">Filter</button>
+    </div>   
+
+</template>
+
+<template name="sortingUI">
+
+  <label>Sort by</label>
+  <div class="switch switch-four candy yellow">
+    <input id="newestFirstRadio" name="sortOrder" type="radio" value="newestFirst" {{sortOrderCheck "newestFirst"}}>
+    <label for="newestFirstRadio" onclick="">Newest First</label>
+
+    <input id="oldestFirstRadio" name="sortOrder" type="radio" value="oldestFirst" {{sortOrderCheck "oldestFirst"}}>  
+    <label for="oldestFirstRadio" onclick="">Oldest First</label>
+    
+    <input id="mostPopularRadio" name="sortOrder" type="radio" value="mostPopular" {{sortOrderCheck "mostPopular"}}> 
+    <label for="mostPopularRadio" onclick="">Most Popular</label>
+    
+    <input id="leastPopularRadio" name="sortOrder" type="radio" value="leastPopular" {{sortOrderCheck "leastPopular"}}> 
+    <label for="leastPopularRadio" onclick="">Least Popular</label>
+    
+    <span class="slide-button"></span>
+  </div>
+
+</template>
+
+<template name="cards_old">
+
+   {{> createProject}}
+   {{> addCard}}
+
+   {{#if cards}}
+       {{#each cards}}
+           {{> card}}
+       {{/each}}
+   {{else}}
+    <h1>No Cards Found</h1>
+   {{/if}}
+
+</template>
+
+<template name="card">
+
+  <div class="card effect3">
+    <div class="row-fluid">
+      <div class="span5">
+        <p>{{timeStamperBookmark timestamp}}</p>
+        <h3>{{cardTitle}}</h3>
+        <h4>{{cardDescription}}</h4>
+        <h5>{{cardCategory}}</h5>
+
+
+        <p><div class="label label-info">Creator: {{emailByUserId creatorId}}</div></p>
+
+        {{#if owner}}
+        <p><div class="label label-inverse">Owner: {{emailByUserId owner}}</div></p>
+        {{else}}
+        <button class="btn btn-mini btn-success" id="own-card">Own this Task</button>
+        {{/if}}
+
+        {{> cardTags}}        
+
+        <button class="btn btn-mini btn-danger" id="delete-card">Delete Task</button>
+      </div>
+      <div class="span7">
+        <a href="#" id="downVote" class="badge badge-important" style="color: #fff; float:right; left: 100px; position:relative; margin-left:5px;"> <i  class="icon-thumbs-down icon-large"></i> {{downVoteCount}}</a>
+        <a href="#" id="upVote" class="badge badge-success" style="color: #fff; float:right; left: 100px; position:relative;" ><i class="icon-thumbs-up icon-large"></i> {{upVoteCount}}</a>
+        {{> cardComments}}
+      </div>
+    </div>
+  </div>
+
+</template>
+
+<template name="cardTags">
+
+  <h5>Tags</h5>
+  <div class="row-fluid" style="max-height:200px; overflow-y:auto; overflow-x: hidden; border: 1px #ddd solid; padding-left: 5px;">
+      {{displayTags tags}}
+  </div>
+  {{form-input "addTag" "" "span6"}}
+
+</template>
+
+<template name="cardComments">
+    <h5>Comments</h5>
+
+    <div class="row-fluid" style="max-height:200px; overflow-y:auto; overflow-x: hidden; border: 1px #ddd solid; padding-left: 5px;">
+    {{#each comments}}
+      {{> comment}}
+    {{/each}}
+    </div>
+
+    <p>
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="error hide alert alert-error"></div>
+          {{form-input "comment" "" "span12"}} 
+        </div>
+      </div>
+    </p>
+</template>
+
+<template name="comment">
+
+  <div class="row-fluid animated fadeInRight" style="border-bottom: 1px #eee solid;">
+    <div class="span12">
+        <p style="font-size:1em; color: #536ea7; font-weight: bold; margin-bottom:-4px;">{{emailByUserId creatorId}}  
+          <span style="font-size:0.75em; color: #999"> - {{timeStamper timestamp}}</span>
+          {{#if myIdMatches creatorId}}
+            <span class="pull-right" style="font-size:0.75em; color: #900"><i class="icon-remove"></i></span>
+          {{/if}}
+        </p>
+        
+        <p style="font-size:1em">{{comment}}</p>
+    </div>
+  </div>
+
+</template>
+
+<template name="addCard">
+
+    {{form-input "title" "Title" "span3"}}
+    {{form-textarea "description" "Description" "span3"}}
+    {{form-button "addCardButton" "Add Card" "btn" }}
+
+</template>
+
+
+<template name="addCardModal">
+
+  <div id="addCardModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addCardModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="addCardModalLabel">Create Card</h3>
+    </div>
+    <div class="modal-body">
+      <div class="error hide alert alert-error"></div>
+      {{form-input "cardTitle" "Title" "span4"}}
+      {{form-textarea "cardDescription" "Description" "span4"}}
+      {{form-select "cardCategory" "Category" "span4" "Engineering,Operations" }}
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary" id="addCardButton">Create</button>
+    </div>
+  </div>
+
+</template>

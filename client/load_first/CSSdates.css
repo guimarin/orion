@@ -1,0 +1,37 @@
+/* beautiful CSS dates - Kroc Camen - camendesign.com
+   creative commons 3.0 attribution. share + remix this, just include "Kroc Camen" and/or "camendesign.com" in your CSS */
+/* ======================================================================================================================= */
+
+a[rel~=bookmark]		{display: block; position: relative; width: 70px; margin-bottom: 18px;
+				 border: 1px solid #888885; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+/* day */			 font: 24px/35px "Helvetica Neue", Arial, sans-serif; text-align: center;
+				 letter-spacing: 2px; text-decoration: none; color: #666;
+				 background: #fcfcfc url("images/date-day-bg.png") repeat-x left 18px; left: -100px; float:left; margin-right:-100px;}
+a[rel~=bookmark] sup		/* lift the suffix, so that the number is fully centered */
+				{position: absolute; padding-top: 4px;
+				 font-size: 10px; line-height: 10px; letter-spacing: normal;}
+
+/* year + month */
+a[rel~=bookmark] abbr		{display: block; font: 10px Verdana, sans-serif; letter-spacing: normal; color: white;
+				 -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;}
+/* month */
+a[rel~=bookmark]>:first-child	{width: 60px; margin: -1px 0 0 -1px; padding: 0 5px; border: 1px solid #832a28;
+				 line-height: 16px; text-align: left; text-transform: uppercase;
+				 background: #a33537 url("images/date-month-bg.png") repeat-x bottom left;}
+/* year */
+a[rel~=bookmark] sup+abbr	{position: absolute; top: 0; left: 0; width: 62px; padding: 0 3px;
+				 border: 1px solid #a33537; border-bottom: 1px solid #832a28;
+				 line-height: 14px; color: #eaa; text-align: right;}
+/* time */
+a[rel~=bookmark] sub		{display: none; height: 17px; border-top: 1px solid #bbd; margin: 0 3px; color: #aac;
+				 font: 9px/16px Verdana, sans-serif; letter-spacing: normal; text-align: center;}
+
+a[rel~=bookmark]:hover,		/* since the date is the permalink, add a focus rectangle around it when hovering */
+ a[rel~=bookmark]:focus		{margin-bottom: 0; text-decoration: none;
+ /* Webkit > */			 outline: auto 5px -webkit-focus-ring-color; outline-offset: -2px;
+ /* Gecko > */			 -moz-outline: -moz-mac-focusring solid 2px; -moz-outline-radius: 0 7px 7px; 
+				 -moz-outline-offset: 0;}
+a[rel~=bookmark]:hover sub,	/* show the time on mouse-over / keyboard-focus */
+ a[rel~=bookmark]:focus sub	{display: block;}
+
+/* ======================================================================================================================= */

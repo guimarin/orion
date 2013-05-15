@@ -1,0 +1,18 @@
+<template name="projects">
+
+<div class="container">
+	<h2>Projects</h2>
+	{{#each projectList}}
+		{{> project}}
+	{{/each}}
+</div>
+
+</template>
+
+<template name="project">
+
+	<div class="box effect3 project-box">
+		<h3>{{projectName}}</h3>
+	</div>
+
+</template>

@@ -1,0 +1,107 @@
+<head>
+  <title>bopen</title>
+</head>
+
+<body>
+  {{> drawers}}
+</body>
+
+<template name="drawers">
+
+        <div class="snap-drawers">
+            <div class="snap-drawer snap-drawer-left">
+            	{{> leftDrawer}}
+            </div>
+            <div class="snap-drawer snap-drawer-right"></div>
+        </div>
+        
+        <div id="content" class="snap-content">
+            <div id="toolbar" class="effect1">
+            	<div class="pull-right" id="login-buttons-right">{{loginButtons align="right"}}</div>
+                <a href="#" id="open-left"></a>
+                <h1>Orion</h1>
+            </div>
+
+            {{#if currentUser}}
+	           	{{> content}}
+	        {{else}}
+	        	<div class="container">
+		        	<center><h2>You are not logged in.</h2></center>
+		        </div>
+           	{{/if}}
+
+        </div>
+
+        {{> createProjectModal}}
+        {{> addCardModal}}
+
+</template>
+
+<template name="leftDrawer">
+
+    <div>
+        <h3>Orion</h3>
+
+        {{#if currentUser}}
+        <h4>Actions</h4>
+        <ul>
+            <li><a href="#createProjectModal" id="createProject" data-toggle="modal">Create a Project</a></li>
+        </ul>
+        {{else}}
+        <h4>Sign in First</h4>
+        {{/if}}
+        <div>
+            <p>Open Allocation Project Management Tool</p>
+            <p>beta software</p>
+        </div>
+    </div>
+
+</template>
+
+<template name="content">
+	<div style="margin-top:80px;margin-left:10px;">
+		{{#if projectSelected}}
+
+			{{> cards}}
+
+		{{else}}
+
+		  	{{> projects}}
+
+		{{/if}}
+	</div>
+
+	{{> whoIsOnline}}
+</template>
+
+<template name="whoIsOnline">
+
+	<div class="usersOnlineBox" id="usersOnlineBox">
+	<h5>Online Users:</h5>
+	{{#each onlineUsers}}
+		<p class="animated fadeInRight">{{emailByUserId userId}}</p>
+	{{/each}}
+	</div>
+
+</template>
+
+
+<template name="createProjectModal">
+
+	<div id="createProjectModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="createProjectModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="createProjectModalLabel">Create Project</h3>
+	  </div>
+	  <div class="modal-body">
+	  	<div class="error hide alert alert-error"></div>
+	    {{form-input "projectName" "Name" "span4"}}
+	    {{form-textarea "projectDescription" "Description" "span4"}}
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	    <button class="btn btn-primary" id="createProjectButton">Create</button>
+	  </div>
+	</div>
+
+</template>
