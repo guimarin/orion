@@ -60,14 +60,18 @@
 
 <template name="content">
 	<div style="margin-top:80px;margin-left:10px;">
-		{{#if projectSelected}}
-
-			{{> cards}}
-
+		{{#if showUserProfile}}
+			{{> user_profile}}
 		{{else}}
+			{{#if projectSelected}}
 
-		  	{{> projects}}
+				{{> cardContainer}}
 
+			{{else}}
+
+			  	{{> projects}}
+
+			{{/if}}
 		{{/if}}
 	</div>
 
@@ -79,7 +83,7 @@
 	<div class="usersOnlineBox" id="usersOnlineBox">
 	<h5>Online Users:</h5>
 	{{#each onlineUsers}}
-		<p class="animated fadeInRight">{{emailByUserId userId}}</p>
+		<p class="animated fadeInRight isUserId" userid="{{userId}}">{{emailByUserId userId}}</p>
 	{{/each}}
 	</div>
 

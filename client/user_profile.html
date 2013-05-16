@@ -1,0 +1,17 @@
+<template name="user_profile">
+
+	<div class="container">
+		<div class="card effect3">
+			{{#with userInfo}}
+			{{#each emails}}
+			<h1>Profile: {{ this.address }}</h1>
+			{{/each}}
+			{{/with}}
+		</div>
+
+		{{> cards}}
+	    <p><a href="#" id="backFromProfile"><i class="icon-arrow-left"></i> Back</a></p>		
+	</div>
+
+
+</template>

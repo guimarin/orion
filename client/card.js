@@ -1,4 +1,4 @@
-Template.cards.events({
+Template.cardContainer.events({
 
     'click #backToList': function () {
     	Session.set( "selectedProject", null );
@@ -89,7 +89,7 @@ Template.addCardModal.events( {
 		    },
 });
 
-Template.cards.projectName = function () {
+Template.cardContainer.projectName = function () {
 	var projectId = Session.get( "selectedProject" );
 
 	return Projects.findOne( { _id: projectId } ) ? Projects.findOne( { _id: projectId } ).projectName : '';
@@ -231,24 +231,32 @@ Template.cards.cards = function () {
 
 	var projectId = Session.get( "selectedProject" );
 	var sortOrder = Session.get( "sortOrder" );
+    var selectedUser = Session.get( "selectedUser" );
 
+    var filter = {};
+
+    if ( selectedUser ) {
+    	filter.owner = selectedUser;
+    } else {
+    	filter.project = projectId;
+    }
 
 	switch(sortOrder)
 	{
 	case "newestFirst":
-	  return Cards.find( { project: projectId }, {sort: { timestamp: -1 } } );
+	  return Cards.find( filter, {sort: { timestamp: -1 } } );
 	  break;
 	case "oldestFirst":
-	  return Cards.find( { project: projectId }, {sort: { timestamp: 1 } } );
+	  return Cards.find( filter, {sort: { timestamp: 1 } } );
 	  break;
 	case "mostPopular":
-	  return Cards.find( { project: projectId }, {sort: { netVoteCount: -1 } } );
+	  return Cards.find( filter, {sort: { netVoteCount: -1 } } );
 	  break;
 	case "leastPopular":
-	  return Cards.find( { project: projectId }, {sort: { netVoteCount: 1 } } );
-	  break;	  
+	  return Cards.find( filter, {sort: { netVoteCount: 1 } } );
+	  break; 
 	default:
-	  return Cards.find( { project: projectId }, {sort: { netVoteCount: -1 } } );
+	  return Cards.find( filter, {sort: { netVoteCount: -1 } } );
 
 	}
 
