@@ -3,6 +3,7 @@
 </head>
 
 <body>
+  
   {{> drawers}}
 </body>
 
@@ -23,7 +24,9 @@
             </div>
 
             {{#if currentUser}}
+            	{{> whoIsOnline}}
 	           	{{> content}}
+
 	        {{else}}
 	        	<div class="container">
 		        	<center><h2>You are not logged in.</h2></center>
@@ -75,16 +78,18 @@
 		{{/if}}
 	</div>
 
-	{{> whoIsOnline}}
+	
 </template>
 
 <template name="whoIsOnline">
 
-	<div class="usersOnlineBox" id="usersOnlineBox">
-	<h5>Online Users:</h5>
-	{{#each onlineUsers}}
-		<p class="animated fadeInRight isUserId" userid="{{userId}}">{{emailByUserId userId}}</p>
-	{{/each}}
+	<div class="usersOnlineBoxContainer effect4">
+		<div class="usersOnlineBox" id="usersOnlineBox">
+		
+		{{#each onlineUsers}}
+			<p class="animated fadeInRight isUserId" userid="{{userId}}"><i class="icon-user"></i> {{emailByUserId userId}}</p>
+		{{/each}}
+		</div>
 	</div>
 
 </template>

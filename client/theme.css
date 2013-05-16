@@ -1,14 +1,17 @@
 .usersOnlineBox {
-	position:fixed;
-	width:200px;
-	max-height: 500px;
-	bottom: 0;
-	right: 0;
+  position:fixed;
+  float:right;
+  top:44px;
+  right: 20px; 
+  left: auto;
+	width:140px;
+	max-height: 200px;
+  overflow: scroll;
 
 	color: #fff;
-	font-size: 0.9em;
+	font-size: 0.8em;
 	background: #536ea7;
-	border-top: 1px solid #111b32;
+	border-bottom: 2px solid #111b32;
 	padding: 5px;
 }
 
