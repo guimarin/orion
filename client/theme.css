@@ -6,7 +6,8 @@
   left: auto;
 	width:140px;
 	max-height: 200px;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 
 	color: #fff;
 	font-size: 0.8em;
