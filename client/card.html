@@ -83,7 +83,7 @@
       <div class="span5">
         <p>{{timeStamperBookmark timestamp}}</p>
         <h3>{{cardTitle}}</h3>
-        <h4 style="max-height:200px; overflow-y:scroll; overflow-x:hidden;">{{cardDescription}}</h4>
+        <h4 style="max-height:200px; overflow-y:auto; overflow-x:hidden;">{{cardDescription}}</h4>
         <h5>{{cardCategory}}</h5>
 
 
@@ -97,7 +97,7 @@
 
         {{> cardTags}}        
 
-        <button class="btn btn-mini btn-danger" id="delete-card">Delete Task</button>
+        {{#if ENABLED}}<button class="btn btn-mini btn-danger" id="delete-card">Delete Task</button>{{/if}}
       </div>
       <div class="span7">
         <a href="#" id="downVote" class="badge badge-important" style="color: #fff; float:right; left: 100px; position:relative; margin-left:5px;"> <i  class="icon-thumbs-down icon-large"></i> {{downVoteCount}}</a>
@@ -108,7 +108,7 @@
     <div class="badge badge-inverse flipTheBox" style="position:absolute; left: 100%; top: 100%; float:right; bottom: 0px; margin-top: -15px; margin-left: -40px;"><i class="icon-pencil"></i></div>
   </div>
   <div class="card back">
-      This is the back
+      <h5>Attached Documents</h5>
       <div class="badge badge-inverse flipTheBox" style="position:absolute; left: 100%; top:100%; bottom: 0; margin-top: -15px; margin-left: -40px;"><i class="icon-pencil"></i></div>
   </div>
 </div>
