@@ -77,12 +77,13 @@
 
 <template name="card">
 
-  <div class="card effect3">
+<div class="passbook">
+  <div class="card front">
     <div class="row-fluid">
       <div class="span5">
         <p>{{timeStamperBookmark timestamp}}</p>
         <h3>{{cardTitle}}</h3>
-        <h4>{{cardDescription}}</h4>
+        <h4 style="max-height:100px; overflow:scroll;">{{cardDescription}}</h4>
         <h5>{{cardCategory}}</h5>
 
 
@@ -104,7 +105,13 @@
         {{> cardComments}}
       </div>
     </div>
+    <div class="badge badge-inverse flipTheBox" style="position:absolute; left: 100%; top: 100%; float:right; bottom: 0px; margin-top: -15px; margin-left: -40px;"><i class="icon-pencil"></i></div>
   </div>
+  <div class="card back">
+      This is the back
+      <div class="badge badge-inverse flipTheBox" style="position:absolute; left: 100%; top:100%; bottom: 0; margin-top: -15px; margin-left: -40px;"><i class="icon-pencil"></i></div>
+  </div>
+</div>
 
 </template>
 

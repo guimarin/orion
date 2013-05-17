@@ -36,6 +36,13 @@ Template.card.events({
 	        }
       });   	
     },
+    'click .flipTheBox': function( event, template ) {
+    	 	
+            $(event.currentTarget).closest(".passbook").toggleClass('rotate-3d');  
+            $(event.currentTarget).closest(".front").toggleClass('hide-front');  
+            event.preventDefault();  
+        
+    },
 });
 
 /*Template.card.upVoteCount = function () {
@@ -206,13 +213,13 @@ Template.searchUI.events( {
         var values = grabInputs( template );
 
         if ( values.searchBox == '' ) {
-        	$(".card").show('fast');
+        	$(".passbook").show('fast');
         	return;
         }
 
 
-        $(".card").show();
-        $($(".card").not( $(".card:contains("+values.searchBox+")"))).hide('slow');
+        $(".passbook").show();
+        $($(".passbook").not( $(".passbook:contains("+values.searchBox+")"))).hide('slow');
         clearInputs( template );
 
 
