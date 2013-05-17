@@ -18,48 +18,11 @@
 
 
 .card {
-  position:absolute;
 	width:100%;
 	background:#FFF;
 	margin:40px 0px;
 	padding: 10px;
-  overflow-y: hidden;
-  overflow-x: hidden;
-    -webkit-backface-visibility: hidden;  
-    -moz-backface-visibility: hidden;  
-    backface-visibility: hidden;
 }
-
-.front {  
-    z-index: 1;  
-}
-
-.back { 
-    -webkit-transform: rotateY(180deg);  
-    -moz-transform: rotateY(180deg);  
-    transform: rotateY(180deg);  
-}  
-
-.rotate-3d {  
-    -webkit-transform: rotateY(180deg);  
-    -moz-transform: rotateY(180deg);  
-    transform: rotateY(180deg);  
-}
-
-.passbook {
-
-  position:relative;
-  height: 500px;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-
-  -webkit-transition: 0.5s;
-  -moz-transition: 0.5s;
-  transition: 0.5s;
-
-}
-
 
 .card h3 {
 	top: 10px;
