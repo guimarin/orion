@@ -34,7 +34,7 @@ Template.user_profile.events({
 	},
 });
 
-Template.comments.events({
+Template.comment.events({
 	'click .isUserId': function ( event, template ) {
 		var userId = $( event.currentTarget ).attr( 'userid' );
 		Session.set( "selectedUser", userId );
