@@ -23,7 +23,9 @@
 	background:#FFF;
 	margin:40px 0px;
 	padding: 10px;
-	height: 390px;
+	max-height: 450px;
+  overflow-y: auto;
+  overflow-x: hidden;
     -webkit-backface-visibility: hidden;  
     -moz-backface-visibility: hidden;  
     backface-visibility: hidden;
